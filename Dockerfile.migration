@@ -1,0 +1,9 @@
+FROM node:19-alpine
+
+WORKDIR /app
+
+RUN npm install sequelize sequelize-cli pg pg-hstore dotenv --no-cache
+COPY database database
+COPY .sequelizerc .sequelizerc
+
+CMD [ "npx", "sequelize-cli", "db:migrate" ]
